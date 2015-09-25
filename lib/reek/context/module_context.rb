@@ -7,6 +7,14 @@ module Reek
     # A context wrapper for any module found in a syntax tree.
     #
     class ModuleContext < CodeContext
+      def defined_methods(visibility: :public)
+        (local_nodes(:def) + local_nodes(:defs)).map(&:name)
+      end
+
+      def method_calls
+        local_nodes(:send).map(&:method_name)
+      end
+
       def node_instance_methods
         local_nodes(:def)
       end

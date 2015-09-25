@@ -3,6 +3,8 @@ require_relative '../lib/reek'
 require_relative '../lib/reek/spec'
 require_relative '../lib/reek/ast/ast_node_class_map'
 require_relative '../lib/reek/configuration/app_configuration'
+require_relative '../lib/reek/source/source_code'
+require_relative '../lib/reek/context/code_context'
 
 Reek::CLI::Silencer.silently do
   require 'factory_girl'
@@ -37,6 +39,11 @@ module Helpers
   def sexp(type, *children)
     @klass_map ||= Reek::AST::ASTNodeClassMap.new
     @klass_map.klass_for(type).new(type, children)
+  end
+
+  def create_context(source)
+    Reek::Context::ModuleContext.new(nil,
+                                   Reek::Source::SourceCode.from(source).syntax_tree)
   end
 end
 
