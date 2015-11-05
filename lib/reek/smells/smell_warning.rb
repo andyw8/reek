@@ -64,6 +64,18 @@ module Reek
         "#{context} #{message} (#{smell_type})"
       end
 
+      def self.build(detector, options)
+        context = options.fetch(:context)
+        exp = context.exp
+        ctx_source = exp.loc.expression.source_buffer.name
+        new detector,
+            source: ctx_source,
+            context: context.full_name,
+            lines: options.fetch(:lines),
+            message: options.fetch(:message),
+            parameters: options.fetch(:parameters, {})
+      end
+
       protected
 
       def sort_key
