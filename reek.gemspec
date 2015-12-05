@@ -22,14 +22,15 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.0.0'
   s.summary = 'Code smell detector for Ruby'
 
-  s.add_runtime_dependency 'codeclimate-engine-rb', '~> 0.1.0'
+  s.add_runtime_dependency 'codeclimate-engine-rb', '~> 0.2.0'
   s.add_runtime_dependency 'parser',                '~> 2.2', '>= 2.2.2.5'
   s.add_runtime_dependency 'private_attr',          '~> 1.1'
   s.add_runtime_dependency 'rainbow',               '~> 2.0'
   s.add_runtime_dependency 'unparser',              '~> 0.2.2'
+  s.add_runtime_dependency 'pry'
 
   s.add_development_dependency 'activesupport', '~> 4.2'
-  s.add_development_dependency 'aruba',         '~> 0.10.0'
+  # s.add_development_dependency 'aruba',         '~> 0.10.0' # fails due to FFI
   s.add_development_dependency 'ataru',         '~> 0.2.0'
   s.add_development_dependency 'bundler',       '~> 1.1'
   s.add_development_dependency 'cucumber',      '~> 2.0'

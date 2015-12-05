@@ -11,12 +11,12 @@ module Reek
         @warning = warning
       end
 
-      def to_hash
+      def render
         CCEngine::Issue.new(check_name: check_name,
                             description: description,
                             categories: categories,
                             location: location
-                           ).to_hash
+                           ).render
       end
 
       private
@@ -37,8 +37,9 @@ module Reek
       def location
         warning_lines = warning.lines
         CCEngine::Location::LineRange.new(
-          path: warning.source,
-          line_range: warning_lines.first..warning_lines.last
+          # path: warning.source,
+          path: warning.source.split("/code/")[1],
+          line_range: warning_lines.sort.first..warning_lines.sort.last
         )
       end
     end

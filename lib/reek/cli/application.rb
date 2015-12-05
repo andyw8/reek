@@ -37,7 +37,7 @@ module Reek
       end
 
       def report_smells
-        self.status = STATUS_SMELLS
+        self.status = (options.report_format == :code_climate) ? 0 : STATUS_SMELLS
       end
 
       private
